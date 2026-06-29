@@ -97,7 +97,12 @@ Parceiros Corp Ltda.`,
     hasAttachment: false,
     attachment: null,
     starred: false,
-    body: "Pode ser às 14h? Tenho uma call antes mas termino às 13h45.",
+    body: `Olá, Pedro, tudo bem?
+
+Combinado. Podemos nos reunir às 14h na terça-feira.
+
+Atenciosamente,
+Pedro Silva`,
   },
 ];
 
@@ -147,21 +152,22 @@ function NormalWebsite({ onInfect }: { onInfect: () => void }) {
   const urgentEmail = FAKE_EMAILS[0];
 
   return (
-    <div className="size-full flex flex-col bg-gray-100 font-sans overflow-hidden">
+    <div className="size-full flex flex-col font-sans overflow-hidden" style={{ background: "#0f1117" }}>
       {/* Top bar */}
-      <div className="h-14 bg-white border-b border-gray-200 flex items-center px-4 gap-4 shrink-0 shadow-sm z-10">
+      <div className="h-14 flex items-center px-4 gap-4 shrink-0 z-10" style={{ background: "#161b22", borderBottom: "1px solid #21262d" }}>
         <div className="flex items-center gap-2 mr-4">
-          <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
+          <div className="w-8 h-8 rounded-lg flex items-center justify-center" style={{ background: "#22c55e" }}>
             <Mail className="w-4 h-4 text-white" />
           </div>
-          <span className="font-semibold text-gray-800 text-sm">CorpMail Pro</span>
+          <span className="font-semibold text-white text-sm">TDS CORP</span>
         </div>
 
         <div className="flex-1 max-w-md">
           <div className="relative">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4" style={{ color: "#8b949e" }} />
             <input
-              className="w-full pl-9 pr-4 py-1.5 bg-gray-100 rounded-lg text-sm border border-gray-200 focus:outline-none focus:border-blue-400"
+              className="w-full pl-9 pr-4 py-1.5 text-sm rounded-lg focus:outline-none"
+              style={{ background: "#21262d", border: "1px solid #30363d", color: "#e6edf3" }}
               placeholder="Pesquisar e-mails..."
               value={searchValue}
               onChange={(e) => setSearchValue(e.target.value)}
@@ -172,27 +178,33 @@ function NormalWebsite({ onInfect }: { onInfect: () => void }) {
         <div className="ml-auto flex items-center gap-3">
           <button
             onClick={() => setShowNotification(true)}
-            className="relative p-2 hover:bg-gray-100 rounded-full"
+            className="relative p-2 rounded-full transition-colors"
+            style={{ color: "#8b949e" }}
           >
-            <Bell className="w-5 h-5 text-gray-600" />
+            <Bell className="w-5 h-5" />
             {!notifDismissed && (
               <span className="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full" />
             )}
           </button>
-          <div className="flex items-center gap-2 pl-3 border-l border-gray-200">
-            <div className="w-7 h-7 bg-blue-600 rounded-full flex items-center justify-center text-white text-xs font-bold">
-              CS
+          <div className="flex items-center gap-2 pl-3" style={{ borderLeft: "1px solid #30363d" }}>
+            <div className="w-7 h-7 rounded-full flex items-center justify-center text-white text-xs font-bold" style={{ background: "#22c55e" }}>
+              2TDS
             </div>
-            <span className="text-sm text-gray-700 hidden sm:block">Carlos Silva</span>
+            <span className="text-sm hidden sm:block" style={{ color: "#e6edf3" }}>2 TDS</span>
           </div>
         </div>
       </div>
 
       <div className="flex flex-1 overflow-hidden">
         {/* Left sidebar */}
-        <div className="w-52 bg-white border-r border-gray-200 flex flex-col shrink-0">
+        <div className="w-52 flex flex-col shrink-0" style={{ background: "#161b22", borderRight: "1px solid #21262d" }}>
           <div className="p-3">
-            <button className="w-full bg-blue-600 hover:bg-blue-700 text-white rounded-lg py-2 px-4 text-sm font-medium flex items-center justify-center gap-2 transition-colors">
+            <button
+              className="w-full text-white rounded-lg py-2 px-4 text-sm font-medium flex items-center justify-center gap-2 transition-colors"
+              style={{ background: "#22c55e" }}
+              onMouseOver={(e) => (e.currentTarget.style.background = "#16a34a")}
+              onMouseOut={(e) => (e.currentTarget.style.background = "#22c55e")}
+            >
               <span className="text-lg leading-none">+</span> Novo e-mail
             </button>
           </div>
@@ -206,23 +218,24 @@ function NormalWebsite({ onInfect }: { onInfect: () => void }) {
               <button
                 key={key}
                 onClick={() => setActiveSection(key as typeof activeSection)}
-                className={`w-full flex items-center gap-3 px-3 py-2 rounded-lg text-sm transition-colors ${
+                className="w-full flex items-center gap-3 px-3 py-2 rounded-lg text-sm transition-colors"
+                style={
                   activeSection === key
-                    ? "bg-blue-50 text-blue-700 font-medium"
-                    : "text-gray-700 hover:bg-gray-100"
-                }`}
+                    ? { background: "#1a3a2a", color: "#22c55e", fontWeight: 600 }
+                    : { color: "#8b949e" }
+                }
               >
                 <Icon className="w-4 h-4" />
                 <span className="flex-1 text-left">{label}</span>
                 {count > 0 && (
-                  <span className="bg-blue-600 text-white text-xs rounded-full px-1.5 py-0.5">
+                  <span className="text-white text-xs rounded-full px-1.5 py-0.5" style={{ background: "#22c55e" }}>
                     {count}
                   </span>
                 )}
               </button>
             ))}
           </nav>
-          <div className="p-3 border-t border-gray-200 space-y-0.5">
+          <div className="p-3 space-y-0.5" style={{ borderTop: "1px solid #21262d" }}>
             {[
               { icon: FolderOpen, label: "Arquivos" },
               { icon: Users, label: "Contatos" },
@@ -231,7 +244,8 @@ function NormalWebsite({ onInfect }: { onInfect: () => void }) {
             ].map(({ icon: Icon, label }) => (
               <button
                 key={label}
-                className="w-full flex items-center gap-3 px-3 py-2 rounded-lg text-sm text-gray-600 hover:bg-gray-100 transition-colors"
+                className="w-full flex items-center gap-3 px-3 py-2 rounded-lg text-sm transition-colors"
+                style={{ color: "#8b949e" }}
               >
                 <Icon className="w-4 h-4" />
                 {label}
@@ -241,45 +255,47 @@ function NormalWebsite({ onInfect }: { onInfect: () => void }) {
         </div>
 
         {/* Email list */}
-        <div className="w-80 bg-white border-r border-gray-200 flex flex-col shrink-0">
-          <div className="px-4 py-3 border-b border-gray-200 flex items-center justify-between">
-            <span className="font-semibold text-gray-800 text-sm">
-              {activeSection === "inbox"
-                ? "Caixa de entrada"
-                : activeSection === "starred"
-                ? "Favoritos"
-                : "Enviados"}
+        <div className="w-80 flex flex-col shrink-0" style={{ background: "#0d1117", borderRight: "1px solid #21262d" }}>
+          <div className="px-4 py-3 flex items-center justify-between" style={{ borderBottom: "1px solid #21262d" }}>
+            <span className="font-semibold text-white text-sm">
+              {activeSection === "inbox" ? "Caixa de entrada" : activeSection === "starred" ? "Favoritos" : "Enviados"}
             </span>
-            <span className="text-xs text-gray-400">{filtered.length} mensagens</span>
+            <span className="text-xs" style={{ color: "#8b949e" }}>{filtered.length} mensagens</span>
           </div>
-          <div className="flex-1 overflow-y-auto divide-y divide-gray-100">
+          <div className="flex-1 overflow-y-auto" style={{ divideColor: "#21262d" }}>
             {filtered.map((email) => (
               <button
                 key={email.id}
                 onClick={() => setSelectedEmail(email)}
-                className={`w-full text-left px-4 py-3 hover:bg-blue-50 transition-colors relative ${
-                  selectedEmail?.id === email.id ? "bg-blue-50" : ""
-                } ${email.unread ? "bg-blue-50/40" : ""}`}
+                className="w-full text-left px-4 py-3 transition-colors relative"
+                style={{
+                  borderBottom: "1px solid #21262d",
+                  background: selectedEmail?.id === email.id
+                    ? "#1a2a1a"
+                    : email.unread
+                    ? "#0d1f12"
+                    : "transparent",
+                }}
               >
-                {email.unread && (
-                  <span className="absolute left-2 top-1/2 -translate-y-1/2 w-1.5 h-1.5 bg-blue-600 rounded-full" />
-                )}
-                <div className="flex items-start justify-between gap-2 mb-0.5">
-                  <span
-                    className={`text-sm truncate ${
-                      email.unread ? "font-semibold text-gray-900" : "text-gray-700"
-                    }`}
-                  >
-                    {email.from.split("@")[0].replace(".", " ").replace(/\b\w/g, (c) => c.toUpperCase())}
-                  </span>
-                  <span className="text-xs text-gray-400 shrink-0">{email.time}</span>
-                </div>
-                <div className={`text-sm truncate mb-0.5 ${email.unread ? "font-medium text-gray-800" : "text-gray-600"}`}>
-                  {email.subject}
-                </div>
-                <div className="text-xs text-gray-400 truncate flex items-center gap-1">
-                  {email.hasAttachment && <Paperclip className="w-3 h-3" />}
-                  {email.preview}
+                <div className="flex items-start gap-3">
+                  <div className="w-8 h-8 rounded-full flex items-center justify-center text-white text-xs font-bold shrink-0 mt-0.5" style={{ background: "#22c55e" }}>
+                    {email.from[0].toUpperCase()}
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-baseline justify-between gap-2 mb-0.5">
+                      <span className="text-sm truncate" style={{ color: email.unread ? "#e6edf3" : "#8b949e", fontWeight: email.unread ? 600 : 400 }}>
+                        {email.from.split("@")[0].replace(".", " ").replace(/\b\w/g, (c) => c.toUpperCase())}
+                      </span>
+                      <span className="text-xs shrink-0" style={{ color: "#8b949e" }}>{email.time}</span>
+                    </div>
+                    <div className="text-sm truncate mb-0.5" style={{ color: email.unread ? "#c9d1d9" : "#6e7681", fontWeight: email.unread ? 500 : 400 }}>
+                      {email.subject}
+                    </div>
+                    <div className="text-xs truncate flex items-center gap-1" style={{ color: "#6e7681" }}>
+                      {email.hasAttachment && <Paperclip className="w-3 h-3" />}
+                      {email.preview}
+                    </div>
+                  </div>
                 </div>
               </button>
             ))}
@@ -287,21 +303,21 @@ function NormalWebsite({ onInfect }: { onInfect: () => void }) {
         </div>
 
         {/* Email body */}
-        <div className="flex-1 flex flex-col overflow-hidden">
+        <div className="flex-1 flex flex-col overflow-hidden" style={{ background: "#0d1117" }}>
           {selectedEmail ? (
             <div className="flex-1 overflow-y-auto">
               <div className="p-6 max-w-2xl">
                 <div className="mb-6">
-                  <h2 className="text-xl font-semibold text-gray-900 mb-3">
+                  <h2 className="text-xl font-semibold text-white mb-3">
                     {selectedEmail.subject}
                   </h2>
                   <div className="flex items-center gap-3 mb-4">
-                    <div className="w-9 h-9 bg-gradient-to-br from-orange-400 to-red-500 rounded-full flex items-center justify-center text-white text-sm font-bold">
+                    <div className="w-9 h-9 rounded-full flex items-center justify-center text-white text-sm font-bold" style={{ background: "#22c55e" }}>
                       {selectedEmail.from[0].toUpperCase()}
                     </div>
                     <div>
-                      <div className="text-sm font-medium text-gray-800">{selectedEmail.from}</div>
-                      <div className="text-xs text-gray-400 flex items-center gap-1">
+                      <div className="text-sm font-medium" style={{ color: "#e6edf3" }}>{selectedEmail.from}</div>
+                      <div className="text-xs flex items-center gap-1" style={{ color: "#8b949e" }}>
                         <Clock className="w-3 h-3" />
                         Hoje às {selectedEmail.time}
                       </div>
@@ -309,50 +325,51 @@ function NormalWebsite({ onInfect }: { onInfect: () => void }) {
                   </div>
                 </div>
 
-                <div className="bg-white rounded-xl border border-gray-200 p-6 shadow-sm">
-                  <pre className="whitespace-pre-wrap text-sm text-gray-700 leading-relaxed font-sans">
+                <div className="rounded-xl p-6" style={{ background: "#161b22", border: "1px solid #21262d" }}>
+                  <pre className="whitespace-pre-wrap text-sm leading-relaxed font-sans" style={{ color: "#c9d1d9" }}>
                     {selectedEmail.body}
                   </pre>
 
                   {selectedEmail.hasAttachment && selectedEmail.attachment && (
-                    <div className="mt-6 pt-4 border-t border-gray-100">
-                      <div className="text-xs font-medium text-gray-500 mb-3 uppercase tracking-wide">
+                    <div className="mt-6 pt-4" style={{ borderTop: "1px solid #21262d" }}>
+                      <div className="text-xs font-medium mb-3 uppercase tracking-wide" style={{ color: "#8b949e" }}>
                         Anexo
                       </div>
-                      <div className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg border border-gray-200 hover:border-blue-300 transition-colors group">
-                        <div className="w-10 h-10 bg-red-100 rounded-lg flex items-center justify-center">
-                          <FileText className="w-5 h-5 text-red-600" />
+                      <div className="flex items-center gap-3 p-3 rounded-lg group transition-colors" style={{ background: "#0d1117", border: "1px solid #30363d" }}>
+                        <div className="w-10 h-10 rounded-lg flex items-center justify-center" style={{ background: "#1a1a2e" }}>
+                          <FileText className="w-5 h-5 text-red-400" />
                         </div>
                         <div className="flex-1 min-w-0">
-                          <div className="text-sm font-medium text-gray-800 truncate">
+                          <div className="text-sm font-medium truncate text-white">
                             {selectedEmail.attachment}
                           </div>
-                          <div className="text-xs text-gray-400">PDF · 284 KB</div>
+                          <div className="text-xs" style={{ color: "#8b949e" }}>PDF · 284 KB</div>
                         </div>
                         {!downloading ? (
                           <button
                             onClick={handleOpenAttachment}
-                            className="flex items-center gap-1.5 bg-blue-600 hover:bg-blue-700 text-white text-xs font-medium px-3 py-1.5 rounded-lg transition-colors"
+                            className="flex items-center gap-1.5 text-white text-xs font-medium px-3 py-1.5 rounded-lg transition-colors"
+                            style={{ background: "#22c55e" }}
                           >
                             <Eye className="w-3.5 h-3.5" />
                             Abrir
                           </button>
                         ) : (
                           <div className="flex flex-col items-end gap-1">
-                            <span className="text-xs text-blue-600 font-medium">
+                            <span className="text-xs font-medium" style={{ color: "#22c55e" }}>
                               {downloadProgress < 100 ? "Abrindo..." : "Executando..."}
                             </span>
-                            <div className="w-24 h-1.5 bg-gray-200 rounded-full overflow-hidden">
+                            <div className="w-24 h-1.5 rounded-full overflow-hidden" style={{ background: "#21262d" }}>
                               <div
-                                className="h-full bg-blue-500 transition-all duration-100"
-                                style={{ width: `${Math.min(downloadProgress, 100)}%` }}
+                                className="h-full transition-all duration-100"
+                                style={{ width: `${Math.min(downloadProgress, 100)}%`, background: "#22c55e" }}
                               />
                             </div>
                           </div>
                         )}
                       </div>
                       {downloading && downloadProgress < 100 && (
-                        <div className="mt-2 flex items-center gap-1.5 text-xs text-amber-600">
+                        <div className="mt-2 flex items-center gap-1.5 text-xs text-amber-400">
                           <AlertCircle className="w-3.5 h-3.5" />
                           Verificando arquivo com antivírus...
                         </div>
@@ -364,11 +381,11 @@ function NormalWebsite({ onInfect }: { onInfect: () => void }) {
             </div>
           ) : (
             <div className="flex-1 flex flex-col items-center justify-center text-center p-8">
-              <div className="w-16 h-16 bg-blue-50 rounded-full flex items-center justify-center mb-4">
-                <Mail className="w-8 h-8 text-blue-400" />
+              <div className="w-16 h-16 rounded-full flex items-center justify-center mb-4" style={{ background: "#1a2a1a" }}>
+                <Mail className="w-8 h-8" style={{ color: "#22c55e" }} />
               </div>
-              <p className="text-gray-500 text-sm">Selecione um e-mail para ler</p>
-              <p className="text-gray-400 text-xs mt-1">Você tem 2 mensagens não lidas</p>
+              <p className="text-sm" style={{ color: "#8b949e" }}>Selecione um e-mail para ler</p>
+              <p className="text-xs mt-1" style={{ color: "#6e7681" }}>Você tem 2 mensagens não lidas</p>
             </div>
           )}
         </div>
@@ -382,23 +399,24 @@ function NormalWebsite({ onInfect }: { onInfect: () => void }) {
             animate={{ x: 0, opacity: 1 }}
             exit={{ x: 400, opacity: 0 }}
             transition={{ type: "spring", stiffness: 300, damping: 30 }}
-            className="fixed bottom-5 right-5 w-80 bg-white border border-gray-200 rounded-xl shadow-2xl overflow-hidden z-50"
+            className="fixed bottom-5 right-5 w-80 rounded-xl shadow-2xl overflow-hidden z-50"
+            style={{ background: "#161b22", border: "1px solid #21262d" }}
           >
             <div className="p-4">
               <div className="flex items-start gap-3">
-                <div className="w-8 h-8 bg-orange-100 rounded-full flex items-center justify-center shrink-0">
-                  <Mail className="w-4 h-4 text-orange-600" />
+                <div className="w-8 h-8 rounded-full flex items-center justify-center shrink-0" style={{ background: "#1a2a1a" }}>
+                  <Mail className="w-4 h-4" style={{ color: "#22c55e" }} />
                 </div>
                 <div className="flex-1 min-w-0">
-                  <div className="text-xs font-semibold text-gray-500 mb-0.5">Novo e-mail — URGENTE</div>
-                  <div className="text-sm font-semibold text-gray-900 truncate">
+                  <div className="text-xs font-semibold mb-0.5" style={{ color: "#8b949e" }}>Novo e-mail — URGENTE</div>
+                  <div className="text-sm font-semibold truncate text-white">
                     {urgentEmail.subject}
                   </div>
-                  <div className="text-xs text-gray-500 truncate mt-0.5">{urgentEmail.preview}</div>
+                  <div className="text-xs truncate mt-0.5" style={{ color: "#8b949e" }}>{urgentEmail.preview}</div>
                 </div>
                 <button
                   onClick={() => setNotifDismissed(true)}
-                  className="text-gray-400 hover:text-gray-600 shrink-0"
+                  style={{ color: "#6e7681" }}
                 >
                   <X className="w-4 h-4" />
                 </button>
@@ -409,19 +427,21 @@ function NormalWebsite({ onInfect }: { onInfect: () => void }) {
                     setSelectedEmail(urgentEmail);
                     setNotifDismissed(true);
                   }}
-                  className="flex-1 bg-blue-600 hover:bg-blue-700 text-white text-xs font-medium py-1.5 rounded-lg transition-colors"
+                  className="flex-1 text-white text-xs font-medium py-1.5 rounded-lg transition-colors"
+                  style={{ background: "#22c55e" }}
                 >
                   Abrir e-mail
                 </button>
                 <button
                   onClick={() => setNotifDismissed(true)}
-                  className="flex-1 border border-gray-200 text-gray-600 hover:bg-gray-50 text-xs font-medium py-1.5 rounded-lg transition-colors"
+                  className="flex-1 text-xs font-medium py-1.5 rounded-lg transition-colors"
+                  style={{ border: "1px solid #30363d", color: "#8b949e" }}
                 >
                   Ignorar
                 </button>
               </div>
             </div>
-            <div className="h-1 bg-blue-600 animate-[shrink_6s_linear_forwards]" />
+            <div className="h-1 animate-[shrink_6s_linear_forwards]" style={{ background: "#22c55e" }} />
           </motion.div>
         )}
       </AnimatePresence>
