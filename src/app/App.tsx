@@ -55,7 +55,7 @@ Parceiros Corp Ltda.`,
     id: 2,
     from: "r@empresa.com",
     subject: "RANSOMWARE",
-    preview: "As versões mais modernas de ransomware não apenas criptografam...",
+    preview: "",
     time: "08:30",
     unread: false,
     hasAttachment: false,
@@ -69,7 +69,7 @@ As versões mais modernas de ransomware não apenas criptografam os arquivos, ma
     id: 3,
     from: "r@banco-seguro.com",
     subject: "RANSOMWARE",
-    preview: "Após concluir a criptografia, o ransomware exibe uma mensagem...",
+    preview: "",
     time: "07:55",
     unread: true,
     hasAttachment: false,
@@ -83,7 +83,7 @@ Após concluir a criptografia dos arquivos, o ransomware exibe uma mensagem de a
     id: 4,
     from: "r@techdigest.io",
     subject: "RANSOMWARE",
-    preview: "Após a infecção o malware é executado automaticamente e começa...",
+    preview: "",
     time: "Ontem",
     unread: false,
     hasAttachment: false,
@@ -97,7 +97,7 @@ Após a infecção, o malware é executado automaticamente e começa a criptogra
     id: 5,
     from: "r@ransomware.com",
     subject: "RANSOMWARE",
-    preview: "O ataque geralmente começa quando o criminoso consegue acesso...",
+    preview: "",
     time: "Ontem",
     unread: false,
     hasAttachment: false,
@@ -288,7 +288,7 @@ function NormalWebsite({ onInfect }: { onInfect: () => void }) {
                 }}
               >
                 <div className="flex items-start gap-3">
-                  <div className="w-8 h-8 rounded-full flex items-center justify-center text-white text-xs font-bold shrink-0 mt-0.5" style={{ background: "#ef4444" }}>
+                  <div className="w-8 h-8 rounded-full flex items-center justify-center text-white text-xs font-bold shrink-0 mt-0.5" style={{ background: "#22c55e" }}>
                     R
                   </div>
                   <div className="flex-1 min-w-0">
