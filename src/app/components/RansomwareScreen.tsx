@@ -2,6 +2,8 @@ import { useEffect, useState, useRef } from "react";
 import { Lock, AlertTriangle, Timer, Bitcoin, Shield, Copy, CheckCheck } from "lucide-react";
 import { motion } from "motion/react";
 
+const G = "#22c55e";
+
 function generateKey(): string {
   const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
   const segments = 5;
@@ -88,7 +90,8 @@ export function RansomwareScreen() {
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: [0, 0.25, 0] }}
-          className="absolute inset-0 bg-red-600 mix-blend-overlay pointer-events-none z-10"
+          className="absolute inset-0 mix-blend-overlay pointer-events-none z-10"
+          style={{ background: G }}
         />
       )}
 
@@ -98,10 +101,11 @@ export function RansomwareScreen() {
           initial={{ scale: 0, rotate: -8, x: 20 }}
           animate={{ scale: 1, rotate: 0, x: 0 }}
           exit={{ scale: 0 }}
-          className="absolute top-4 right-4 bg-red-700 border-2 border-red-400 p-4 rounded-lg shadow-2xl z-50"
+          className="absolute top-4 right-4 p-4 rounded-lg shadow-2xl z-50 border-2"
+          style={{ background: "#14532d", borderColor: G }}
         >
           <div className="flex items-center gap-2 text-white">
-            <AlertTriangle className="w-5 h-5 animate-pulse" />
+            <AlertTriangle className="w-5 h-5 animate-pulse" style={{ color: G }} />
             <span className="font-bold text-sm">O TEMPO ESTÁ ACABANDO!</span>
           </div>
         </motion.div>
@@ -113,7 +117,8 @@ export function RansomwareScreen() {
           initial={{ y: -100 }}
           animate={{ y: 0 }}
           transition={{ type: "spring", stiffness: 100 }}
-          className="bg-red-700 border-b-4 border-red-900 p-5 flex items-center justify-between shrink-0"
+          className="p-5 flex items-center justify-between shrink-0 border-b-4"
+          style={{ background: "#14532d", borderColor: "#166534" }}
         >
           <div className="flex items-center gap-4">
             <Lock className="w-10 h-10 text-white shrink-0" />
@@ -121,12 +126,12 @@ export function RansomwareScreen() {
               <h1 className="text-2xl font-bold text-white tracking-wider leading-tight">
                 SEUS ARQUIVOS FORAM CRIPTOGRAFADOS
               </h1>
-              <p className="text-red-200 text-sm mt-0.5">
+              <p className="text-sm mt-0.5" style={{ color: "#86efac" }}>
                 Todos os seus documentos, fotos, bancos de dados e arquivos importantes estão bloqueados
               </p>
             </div>
           </div>
-          <Shield className="w-14 h-14 text-red-950 animate-pulse shrink-0" />
+          <Shield className="w-14 h-14 animate-pulse shrink-0" style={{ color: "#166534" }} />
         </motion.div>
 
         {/* Body */}
@@ -139,9 +144,9 @@ export function RansomwareScreen() {
             className="flex-1 p-6 flex flex-col gap-5 overflow-y-auto"
           >
             {/* Countdown */}
-            <div className="bg-gradient-to-br from-red-950 to-black border-4 border-red-700 rounded-xl p-6 shadow-2xl">
+            <div className="rounded-xl p-6 shadow-2xl border-4" style={{ background: "#052e16", borderColor: G }}>
               <div className="flex items-center gap-3 mb-5">
-                <Timer className="w-7 h-7 text-red-400 animate-pulse" />
+                <Timer className="w-7 h-7 animate-pulse" style={{ color: G }} />
                 <h2 className="text-xl font-bold text-white tracking-wide">
                   TEMPO ATÉ O PREÇO DOBRAR
                 </h2>
@@ -153,14 +158,14 @@ export function RansomwareScreen() {
                   { value: timeLeft.seconds, label: "SEGUNDOS" },
                 ].map(({ value, label }, i) => (
                   <div key={label} className="flex items-center gap-4">
-                    {i > 0 && <div className="text-5xl text-red-600 font-mono self-center">:</div>}
+                    {i > 0 && <div className="text-5xl font-mono self-center" style={{ color: G }}>:</div>}
                     <div className="text-center">
-                      <div className="bg-black border-2 border-red-600 rounded-lg p-4 min-w-[88px]">
-                        <div className={`text-5xl font-mono font-bold text-red-500 ${label === "SEGUNDOS" ? "animate-pulse" : ""}`}>
+                      <div className="bg-black rounded-lg p-4 min-w-[88px] border-2" style={{ borderColor: G }}>
+                        <div className={`text-5xl font-mono font-bold ${label === "SEGUNDOS" ? "animate-pulse" : ""}`} style={{ color: G }}>
                           {String(value).padStart(2, "0")}
                         </div>
                       </div>
-                      <div className="text-red-400 mt-1.5 text-xs font-semibold tracking-widest">
+                      <div className="mt-1.5 text-xs font-semibold tracking-widest" style={{ color: G }}>
                         {label}
                       </div>
                     </div>
@@ -174,22 +179,24 @@ export function RansomwareScreen() {
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               transition={{ delay: 0.5 }}
-              className="bg-gray-950 border-2 border-red-800 rounded-xl p-5"
+              className="bg-gray-950 rounded-xl p-5 border-2"
+              style={{ borderColor: "#166534" }}
             >
-              <h3 className="text-lg font-bold text-red-500 mb-4 flex items-center gap-2">
+              <h3 className="text-lg font-bold mb-4 flex items-center gap-2" style={{ color: G }}>
                 <AlertTriangle className="w-5 h-5" />
                 STATUS DA CRIPTOGRAFIA
               </h3>
               <div className="space-y-3 text-white font-mono text-sm">
                 <div className="flex justify-between">
                   <span className="text-gray-400">Arquivos criptografados:</span>
-                  <span className="text-red-400 font-bold">{filesEncrypted} / 1.247</span>
+                  <span className="font-bold" style={{ color: G }}>{filesEncrypted} / 1.247</span>
                 </div>
-                <div className="w-full bg-gray-900 rounded-full h-3 overflow-hidden border border-red-900">
+                <div className="w-full bg-gray-900 rounded-full h-3 overflow-hidden border" style={{ borderColor: "#166534" }}>
                   <motion.div
                     initial={{ width: 0 }}
                     animate={{ width: `${(filesEncrypted / 1247) * 100}%` }}
-                    className="h-full bg-gradient-to-r from-red-800 to-red-500"
+                    className="h-full"
+                    style={{ background: `linear-gradient(to right, #166534, ${G})` }}
                   />
                 </div>
                 <div className="pt-3 border-t border-gray-800 grid grid-cols-2 gap-1.5">
@@ -202,7 +209,7 @@ export function RansomwareScreen() {
                     "Backups: BLOQUEADO",
                   ].map((item) => (
                     <div key={item} className="flex items-center gap-2">
-                      <div className="w-1.5 h-1.5 bg-red-500 rounded-full animate-pulse shrink-0" />
+                      <div className="w-1.5 h-1.5 rounded-full animate-pulse shrink-0" style={{ background: G }} />
                       <span className="text-gray-400 text-xs">{item}</span>
                     </div>
                   ))}
@@ -227,11 +234,12 @@ export function RansomwareScreen() {
             initial={{ x: 100, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
             transition={{ delay: 0.4 }}
-            className="w-[460px] bg-gradient-to-b from-gray-950 to-black border-l-4 border-red-700 p-6 overflow-y-auto shrink-0"
+            className="w-[460px] bg-gradient-to-b from-gray-950 to-black p-6 overflow-y-auto shrink-0 border-l-4"
+            style={{ borderColor: G }}
           >
             <div className="space-y-5">
               {/* Payment box */}
-              <div className="bg-red-950/60 border-2 border-red-700 rounded-xl p-5">
+              <div className="rounded-xl p-5 border-2" style={{ background: "#052e16", borderColor: G }}>
                 <div className="flex items-center gap-3 mb-5">
                   <Bitcoin className="w-9 h-9 text-yellow-500" />
                   <h2 className="text-xl font-bold text-white">PAGAMENTO EXIGIDO</h2>
@@ -247,13 +255,13 @@ export function RansomwareScreen() {
                 {/* BTC address */}
                 <div className="bg-black rounded-lg p-4 mb-3 font-mono border border-gray-800">
                   <div className="text-xs text-gray-500 mb-2">Endereço Bitcoin:</div>
-                  <div className="text-xs text-red-400 break-all leading-relaxed">{btcAddress}</div>
+                  <div className="text-xs break-all leading-relaxed" style={{ color: G }}>{btcAddress}</div>
                   <button
                     onClick={() => handleCopy(btcAddress, "btc")}
                     className="mt-2 flex items-center gap-1.5 text-xs text-gray-500 hover:text-gray-300 transition-colors"
                   >
                     {copied === "btc" ? (
-                      <><CheckCheck className="w-3.5 h-3.5 text-green-500" /><span className="text-green-500">Copiado!</span></>
+                      <><CheckCheck className="w-3.5 h-3.5" style={{ color: G }} /><span style={{ color: G }}>Copiado!</span></>
                     ) : (
                       <><Copy className="w-3.5 h-3.5" />Copiar endereço</>
                     )}
@@ -274,7 +282,7 @@ export function RansomwareScreen() {
                     className="mt-2 flex items-center gap-1.5 text-xs text-gray-500 hover:text-gray-300 transition-colors"
                   >
                     {copied === "key" ? (
-                      <><CheckCheck className="w-3.5 h-3.5 text-green-500" /><span className="text-green-500">Copiado!</span></>
+                      <><CheckCheck className="w-3.5 h-3.5" style={{ color: G }} /><span style={{ color: G }}>Copiado!</span></>
                     ) : (
                       <><Copy className="w-3.5 h-3.5" />Copiar chave</>
                     )}
@@ -284,7 +292,7 @@ export function RansomwareScreen() {
 
               {/* Warnings */}
               <div className="bg-gray-950 border-2 border-gray-800 rounded-xl p-5">
-                <h3 className="text-lg font-bold text-red-500 mb-3">⚠ AVISOS IMPORTANTES</h3>
+                <h3 className="text-lg font-bold mb-3" style={{ color: G }}>⚠ AVISOS IMPORTANTES</h3>
                 <ul className="space-y-2.5 text-sm">
                   {[
                     "NÃO desligue o computador. Os arquivos serão excluídos permanentemente.",
@@ -294,7 +302,7 @@ export function RansomwareScreen() {
                     "Após 7 dias, sua chave de descriptografia será destruída para sempre.",
                   ].map((w) => (
                     <li key={w} className="flex gap-2 text-gray-300">
-                      <span className="text-red-500 font-bold shrink-0">•</span>
+                      <span className="font-bold shrink-0" style={{ color: G }}>•</span>
                       <span>{w}</span>
                     </li>
                   ))}
@@ -304,7 +312,8 @@ export function RansomwareScreen() {
               <motion.button
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.97 }}
-                className="w-full bg-gradient-to-r from-red-700 to-red-600 hover:from-red-600 hover:to-red-500 text-white font-bold py-4 px-6 rounded-xl border-2 border-red-500 shadow-lg transition-all duration-200 tracking-wide"
+                className="w-full text-white font-bold py-4 px-6 rounded-xl border-2 shadow-lg transition-all duration-200 tracking-wide"
+                style={{ background: G, borderColor: "#16a34a" }}
               >
                 QUERO PAGAR AGORA
               </motion.button>
@@ -322,9 +331,10 @@ export function RansomwareScreen() {
           initial={{ y: 100 }}
           animate={{ y: 0 }}
           transition={{ delay: 0.6 }}
-          className="bg-black border-t-2 border-red-950 p-3 text-center shrink-0"
+          className="bg-black border-t-2 p-3 text-center shrink-0"
+          style={{ borderColor: "#166534" }}
         >
-          <p className="text-red-600 font-mono text-sm animate-pulse tracking-widest">
+          <p className="font-mono text-sm animate-pulse tracking-widest" style={{ color: G }}>
             🔒 SEU COMPUTADOR ESTÁ BLOQUEADO 🔒
           </p>
         </motion.div>

@@ -31,10 +31,11 @@ type Phase = "normal" | "infecting" | "ransomware";
 const FAKE_EMAILS = [
   {
     id: 1,
-    from: "r@parceiros-corp.com.br",
+    from: "departamento.financeiro@gmail.com",
+    name: "departamento.financeiro@gmail.com",
     subject: "URGENTE: Fatura #INV-2024-8821 em atraso",
     preview: "Prezado cliente, segue em anexo a fatura referente ao mês de...",
-    time: "09:14",
+    time: "",
     unread: true,
     hasAttachment: true,
     attachment: "Fatura_INV-2024-8821.pdf.exe",
@@ -54,9 +55,10 @@ Parceiros Corp Ltda.`,
   {
     id: 2,
     from: "r@empresa.com",
+    name: "⚠️ Ameaça Adicional 📂",
     subject: "RANSOMWARE",
     preview: "",
-    time: "08:30",
+    time: "",
     unread: false,
     hasAttachment: false,
     attachment: null,
@@ -68,9 +70,10 @@ As versões mais modernas de ransomware não apenas criptografam os arquivos, ma
   {
     id: 3,
     from: "r@banco-seguro.com",
+    name: "💰 Pedido de Resgate 🚨",
     subject: "RANSOMWARE",
     preview: "",
-    time: "07:55",
+    time: "",
     unread: true,
     hasAttachment: false,
     attachment: null,
@@ -82,9 +85,10 @@ Após concluir a criptografia dos arquivos, o ransomware exibe uma mensagem de a
   {
     id: 4,
     from: "r@techdigest.io",
+    name: "⚙️ Execução e Criptografia 🔐",
     subject: "RANSOMWARE",
     preview: "",
-    time: "Ontem",
+    time: "",
     unread: false,
     hasAttachment: false,
     attachment: null,
@@ -96,9 +100,10 @@ Após a infecção, o malware é executado automaticamente e começa a criptogra
   {
     id: 5,
     from: "r@ransomware.com",
+    name: "🔒 Como Funciona O Ataque De Ransomware 🔒",
     subject: "RANSOMWARE",
     preview: "",
-    time: "Ontem",
+    time: "",
     unread: false,
     hasAttachment: false,
     attachment: null,
@@ -111,7 +116,7 @@ Após a infecção, o malware é executado automaticamente e começa a criptogra
 
 function renderSubject(subject: string, className?: string) {
   if (subject === "RANSOMWARE") {
-    return <span className={className} style={{ color: "#ef4444" }}>RANSOMWARE</span>;
+    return <span className={className} style={{ color: "#ffffff" }}>RANSOMWARE</span>;
   }
   return <span className={className}>{subject}</span>;
 }
@@ -289,14 +294,13 @@ function NormalWebsite({ onInfect }: { onInfect: () => void }) {
               >
                 <div className="flex items-start gap-3">
                   <div className="w-8 h-8 rounded-full flex items-center justify-center text-white text-xs font-bold shrink-0 mt-0.5" style={{ background: "#22c55e" }}>
-                    R
+                    {({1:"D",2:"L",3:"E",4:"E",5:"G"} as Record<number,string>)[email.id] ?? "R"}
                   </div>
                   <div className="flex-1 min-w-0">
                     <div className="flex items-baseline justify-between gap-2 mb-0.5">
-                      <span className="text-sm truncate font-bold" style={{ color: "#ef4444" }}>
-                        R
+                      <span className="text-sm truncate font-semibold" style={{ color: email.unread ? "#e6edf3" : "#8b949e" }}>
+                        {email.name}
                       </span>
-                      <span className="text-xs shrink-0" style={{ color: "#8b949e" }}>{email.time}</span>
                     </div>
                     <div className="text-sm truncate mb-0.5" style={{ fontWeight: email.unread ? 500 : 400, color: email.unread ? "#c9d1d9" : "#6e7681" }}>
                       {renderSubject(email.subject)}
@@ -322,15 +326,11 @@ function NormalWebsite({ onInfect }: { onInfect: () => void }) {
                     {renderSubject(selectedEmail.subject)}
                   </h2>
                   <div className="flex items-center gap-3 mb-4">
-                    <div className="w-9 h-9 rounded-full flex items-center justify-center text-white text-sm font-bold" style={{ background: "#ef4444" }}>
-                      R
+                    <div className="w-9 h-9 rounded-full flex items-center justify-center text-white text-sm font-bold" style={{ background: "#22c55e" }}>
+                      {({1:"D",2:"L",3:"E",4:"E",5:"G"} as Record<number,string>)[selectedEmail.id] ?? "R"}
                     </div>
                     <div>
-                      <div className="text-sm font-bold" style={{ color: "#ef4444" }}>R</div>
-                      <div className="text-xs flex items-center gap-1" style={{ color: "#8b949e" }}>
-                        <Clock className="w-3 h-3" />
-                        Hoje às {selectedEmail.time}
-                      </div>
+                      <div className="text-sm font-semibold" style={{ color: "#e6edf3" }}>{selectedEmail.name}</div>
                     </div>
                   </div>
                 </div>
