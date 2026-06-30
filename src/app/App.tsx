@@ -54,57 +54,67 @@ Parceiros Corp Ltda.`,
   {
     id: 2,
     from: "rh@empresa.com",
-    subject: "Benefícios 2025 - Documentação necessária",
+    subject: "RANSOMWARE",
     preview: "Olá! Para renovação dos seus benefícios precisamos que você...",
     time: "08:30",
     unread: false,
     hasAttachment: false,
     attachment: null,
     starred: true,
-    body: "Olá! Para renovação dos seus benefícios precisamos que você envie a documentação até sexta-feira.",
+    body: `⚠️ Ameaça Adicional 📂
+
+As versões mais modernas de ransomware não apenas criptografam os arquivos, mas também roubam (exfiltram) dados confidenciais 📤 antes de bloquear o sistema. Em seguida, os criminosos ameaçam divulgar ou vender essas informações sigilosas 🌐🔓 caso o resgate não seja pago 💸, aumentando a pressão sobre a vítima e os riscos de prejuízos financeiros e de reputação. 🚨`,
   },
   {
     id: 3,
     from: "suporte@banco-seguro.com",
-    subject: "Ação necessária: Confirme sua conta",
+    subject: "RANSOMWARE",
     preview: "Detectamos uma atividade suspeita na sua conta. Por favor...",
     time: "07:55",
     unread: true,
     hasAttachment: false,
     attachment: null,
     starred: false,
-    body: "Detectamos uma atividade suspeita. Confirme seus dados.",
+    body: `💰 Pedido de Resgate 🚨
+
+Após concluir a criptografia dos arquivos, o ransomware exibe uma mensagem de aviso 📢 informando que os dados foram bloqueados. Os criminosos exigem o pagamento de um resgate 💸, geralmente em criptomoedas 🪙, prometendo fornecer a chave de descriptografia 🗝️ para restaurar o acesso aos arquivos. Mesmo com o pagamento, não há garantia de que os dados serão recuperados. ⚠️`,
   },
   {
     id: 4,
     from: "newsletter@techdigest.io",
-    subject: "As 10 tendências de TI para 2025",
+    subject: "RANSOMWARE",
     preview: "Inteligência artificial, edge computing e muito mais...",
     time: "Ontem",
     unread: false,
     hasAttachment: false,
     attachment: null,
     starred: false,
-    body: "Confira as principais tendências de tecnologia para o próximo ano.",
+    body: `⚙️ Execução e Criptografia 🔐
+
+Após a infecção, o malware é executado automaticamente e começa a criptografar arquivos e pastas importantes 📂 do dispositivo. Esse processo torna os dados inacessíveis 🚫, impedindo que a vítima abra documentos, fotos ou outros arquivos sem a chave de descriptografia 🗝️, que normalmente fica em posse dos criminosos. ⚠️`,
   },
   {
     id: 5,
     from: "pedro.silva@empresa.com",
-    subject: "Re: Reunião de alinhamento - terça",
+    subject: "RANSOMWARE",
     preview: "Pode ser às 14h? Tenho uma call antes mas termino às...",
     time: "Ontem",
     unread: false,
     hasAttachment: false,
     attachment: null,
     starred: false,
-    body: `Olá, Pedro, tudo bem?
+    body: `🔒 COMO FUNCIONA O ATAQUE DE RANSOMWARE
 
-Combinado. Podemos nos reunir às 14h na terça-feira.
-
-Atenciosamente,
-Pedro Silva`,
+🦠 Infecção: O ataque geralmente começa quando o criminoso consegue acesso ao dispositivo por meio de e-mails de phishing 📧, sites infectados 🌐, downloads maliciosos 📥 ou pela exploração de vulnerabilidades em softwares desatualizados 💻. Após a infecção, o ransomware é executado silenciosamente e pode começar a criptografar os arquivos da vítima. 🔐`,
   },
 ];
+
+function renderSubject(subject: string, className?: string) {
+  if (subject === "RANSOMWARE") {
+    return <span className={className} style={{ color: "#ef4444" }}>RANSOMWARE</span>;
+  }
+  return <span className={className}>{subject}</span>;
+}
 
 function NormalWebsite({ onInfect }: { onInfect: () => void }) {
   const [selectedEmail, setSelectedEmail] = useState<(typeof FAKE_EMAILS)[0] | null>(null);
@@ -288,8 +298,8 @@ function NormalWebsite({ onInfect }: { onInfect: () => void }) {
                       </span>
                       <span className="text-xs shrink-0" style={{ color: "#8b949e" }}>{email.time}</span>
                     </div>
-                    <div className="text-sm truncate mb-0.5" style={{ color: email.unread ? "#c9d1d9" : "#6e7681", fontWeight: email.unread ? 500 : 400 }}>
-                      {email.subject}
+                    <div className="text-sm truncate mb-0.5" style={{ fontWeight: email.unread ? 500 : 400, color: email.unread ? "#c9d1d9" : "#6e7681" }}>
+                      {renderSubject(email.subject)}
                     </div>
                     <div className="text-xs truncate flex items-center gap-1" style={{ color: "#6e7681" }}>
                       {email.hasAttachment && <Paperclip className="w-3 h-3" />}
@@ -309,7 +319,7 @@ function NormalWebsite({ onInfect }: { onInfect: () => void }) {
               <div className="p-6 max-w-2xl">
                 <div className="mb-6">
                   <h2 className="text-xl font-semibold text-white mb-3">
-                    {selectedEmail.subject}
+                    {renderSubject(selectedEmail.subject)}
                   </h2>
                   <div className="flex items-center gap-3 mb-4">
                     <div className="w-9 h-9 rounded-full flex items-center justify-center text-white text-sm font-bold" style={{ background: "#22c55e" }}>
