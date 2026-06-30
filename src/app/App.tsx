@@ -31,7 +31,7 @@ type Phase = "normal" | "infecting" | "ransomware";
 const FAKE_EMAILS = [
   {
     id: 1,
-    from: "financeiro@parceiros-corp.com.br",
+    from: "r@parceiros-corp.com.br",
     subject: "URGENTE: Fatura #INV-2024-8821 em atraso",
     preview: "Prezado cliente, segue em anexo a fatura referente ao mês de...",
     time: "09:14",
@@ -53,9 +53,9 @@ Parceiros Corp Ltda.`,
   },
   {
     id: 2,
-    from: "rh@empresa.com",
+    from: "r@empresa.com",
     subject: "RANSOMWARE",
-    preview: "Olá! Para renovação dos seus benefícios precisamos que você...",
+    preview: "As versões mais modernas de ransomware não apenas criptografam...",
     time: "08:30",
     unread: false,
     hasAttachment: false,
@@ -67,9 +67,9 @@ As versões mais modernas de ransomware não apenas criptografam os arquivos, ma
   },
   {
     id: 3,
-    from: "suporte@banco-seguro.com",
+    from: "r@banco-seguro.com",
     subject: "RANSOMWARE",
-    preview: "Detectamos uma atividade suspeita na sua conta. Por favor...",
+    preview: "Após concluir a criptografia, o ransomware exibe uma mensagem...",
     time: "07:55",
     unread: true,
     hasAttachment: false,
@@ -81,9 +81,9 @@ Após concluir a criptografia dos arquivos, o ransomware exibe uma mensagem de a
   },
   {
     id: 4,
-    from: "newsletter@techdigest.io",
+    from: "r@techdigest.io",
     subject: "RANSOMWARE",
-    preview: "Inteligência artificial, edge computing e muito mais...",
+    preview: "Após a infecção o malware é executado automaticamente e começa...",
     time: "Ontem",
     unread: false,
     hasAttachment: false,
@@ -95,9 +95,9 @@ Após a infecção, o malware é executado automaticamente e começa a criptogra
   },
   {
     id: 5,
-    from: "pedro.silva@empresa.com",
+    from: "r@ransomware.com",
     subject: "RANSOMWARE",
-    preview: "Pode ser às 14h? Tenho uma call antes mas termino às...",
+    preview: "O ataque geralmente começa quando o criminoso consegue acesso...",
     time: "Ontem",
     unread: false,
     hasAttachment: false,
@@ -288,13 +288,13 @@ function NormalWebsite({ onInfect }: { onInfect: () => void }) {
                 }}
               >
                 <div className="flex items-start gap-3">
-                  <div className="w-8 h-8 rounded-full flex items-center justify-center text-white text-xs font-bold shrink-0 mt-0.5" style={{ background: "#22c55e" }}>
-                    {email.from[0].toUpperCase()}
+                  <div className="w-8 h-8 rounded-full flex items-center justify-center text-white text-xs font-bold shrink-0 mt-0.5" style={{ background: "#ef4444" }}>
+                    R
                   </div>
                   <div className="flex-1 min-w-0">
                     <div className="flex items-baseline justify-between gap-2 mb-0.5">
-                      <span className="text-sm truncate" style={{ color: email.unread ? "#e6edf3" : "#8b949e", fontWeight: email.unread ? 600 : 400 }}>
-                        {email.from.split("@")[0].replace(".", " ").replace(/\b\w/g, (c) => c.toUpperCase())}
+                      <span className="text-sm truncate font-bold" style={{ color: "#ef4444" }}>
+                        R
                       </span>
                       <span className="text-xs shrink-0" style={{ color: "#8b949e" }}>{email.time}</span>
                     </div>
@@ -322,11 +322,11 @@ function NormalWebsite({ onInfect }: { onInfect: () => void }) {
                     {renderSubject(selectedEmail.subject)}
                   </h2>
                   <div className="flex items-center gap-3 mb-4">
-                    <div className="w-9 h-9 rounded-full flex items-center justify-center text-white text-sm font-bold" style={{ background: "#22c55e" }}>
-                      {selectedEmail.from[0].toUpperCase()}
+                    <div className="w-9 h-9 rounded-full flex items-center justify-center text-white text-sm font-bold" style={{ background: "#ef4444" }}>
+                      R
                     </div>
                     <div>
-                      <div className="text-sm font-medium" style={{ color: "#e6edf3" }}>{selectedEmail.from}</div>
+                      <div className="text-sm font-bold" style={{ color: "#ef4444" }}>R</div>
                       <div className="text-xs flex items-center gap-1" style={{ color: "#8b949e" }}>
                         <Clock className="w-3 h-3" />
                         Hoje às {selectedEmail.time}
